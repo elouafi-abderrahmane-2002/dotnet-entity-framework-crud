@@ -1,47 +1,114 @@
-# Asp.Net Core 6.0 MVC CRUD Operations with EF Core
+# 🗄️ .NET Entity Framework Core — CRUD Application
 
-This is a demo project that I used for showing CRUD Operations ( Insert, Update, Delete and Retrieve)
-with Latest ASP.NET Core 6.0 MVC using Entity Framework Core and SQL Server DB.
+A full-stack web application built with **ASP.NET Core MVC** and **Entity Framework Core**, demonstrating complete CRUD operations with SQL Server, database migrations, and a clean layered architecture.
 
-Points discussed :
-- Create MVC Project
-- Define EF Core Model
-- Dependency Injection
-- DB Connection String
-- Database Migration
-- Create MVC Controller
-- Layout Page
-- Insert Operation
-- Form Validation in MVC
-- Form Submission
-- Display Existing Records
-- Update Operation
-- Delete Operation
+---
 
- ## How it works ?
- 
- :tv: Video tutorial on this same topic
- Url : https://youtu.be/VYmsoCWjvM4
- 
- <a href="http://www.youtube.com/watch?feature=player_embedded&v=VYmsoCWjvM4
-" target="_blank"><img src="http://img.youtube.com/vi/VYmsoCWjvM4/0.jpg" 
-alt="Video Tutorial for CRUD Operation in Asp.Net Core 6.0 MVC and EF Core" width="500" height="400" border="10" /></a>
+## 🚀 Tech Stack
 
+| Layer | Technology |
+|-------|-----------|
+| Backend | ASP.NET Core 6 / C# |
+| ORM | Entity Framework Core 6 |
+| Database | SQL Server / LocalDB |
+| Frontend | Razor Views / Bootstrap 5 |
+| Migrations | EF Core Code-First |
 
-| :bar_chart:               |  List of Tutorials   |   | :moneybag:           | Support Us                           |
-|--------------------------:|:---------------------|---|---------------------:|:-------------------------------------|
-| Angular                   |http://bit.ly/2KQN9xF |   |Paypal                | https://goo.gl/bPcyXW                |
-| Asp.Net Core              |http://bit.ly/30fPDMg |   |Amazon   Affiliate    | https://geni.us/JDzpE                |
-| React                     |http://bit.ly/325temF |   |
-| Python                    |http://bit.ly/2ws4utg |   | :point_right:        | Follow Us                            |
-| Node.js                   |https://goo.gl/viJcFs |   |Website               |http://www.codaffection.com          |
-| Asp.Net MVC               |https://goo.gl/gvjUJ7 |   |YouTube               |https://www.youtube.com/codaffection  |
-| Flutter                   |https://bit.ly/3ggmmJz|   |Facebook              |https://www.facebook.com/codaffection |
-| Web API                   |https://goo.gl/itVayJ |   |Twitter               |https://twitter.com/CodAffection      |
-| MEAN Stack                |https://goo.gl/YJPPAH |   |
-| C# Tutorial               |https://goo.gl/s1zJxo |   |
-| Asp.Net WebForm           |https://goo.gl/GXC2aJ |   |
-| C# WinForm                |https://goo.gl/vHS9Hd |   |
-| MS SQL                    |https://goo.gl/MLYS9e |   |
-| Crystal Report            |https://goo.gl/5Vou7t |   |
-| CG Exercises in C Program |https://goo.gl/qEWJCs |   |
+---
+
+## 📁 Project Structure
+
+```
+├── Controllers/          # MVC Controllers (CRUD actions)
+├── Models/               # Domain entities & ViewModels
+├── Data/
+│   ├── AppDbContext.cs   # EF Core DbContext
+│   └── Migrations/       # Auto-generated migrations
+├── Views/                # Razor templates
+└── Services/             # Business logic layer
+```
+
+---
+
+## ✨ Features
+
+- ✅ Full CRUD (Create, Read, Update, Delete)
+- ✅ Entity Framework Core Code-First
+- ✅ SQL Server with automatic migrations
+- ✅ Model validation & error handling
+- ✅ Entity relationships (One-to-Many, Many-to-Many)
+- ✅ Pagination & search
+- ✅ Bootstrap 5 responsive UI
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+- .NET 6 SDK
+- SQL Server or LocalDB
+- EF Core CLI: `dotnet tool install --global dotnet-ef`
+
+### Run locally
+
+```bash
+# Clone the repo
+git clone https://github.com/elouafi-abderrahmane-2002/dotnet-entity-framework-crud.git
+cd dotnet-entity-framework-crud
+
+# Update appsettings.json with your connection string
+"ConnectionStrings": {
+  "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=CrudDb;Trusted_Connection=True;"
+}
+
+# Apply migrations
+dotnet ef database update
+
+# Run the app
+dotnet run
+```
+
+Open `http://localhost:5000`
+
+---
+
+## 🗃️ Database Schema
+
+```
+Products
+├── Id (PK)
+├── Name
+├── Description
+├── Price
+├── CategoryId (FK)
+└── CreatedAt
+
+Categories
+├── Id (PK)
+├── Name
+└── Products (navigation)
+```
+
+---
+
+## 📡 EF Core Key Concepts Used
+
+```csharp
+// DbContext configuration
+modelBuilder.Entity<Product>()
+    .HasOne(p => p.Category)
+    .WithMany(c => c.Products)
+    .HasForeignKey(p => p.CategoryId);
+
+// Query with include
+var products = await _context.Products
+    .Include(p => p.Category)
+    .ToListAsync();
+```
+
+---
+
+## 👤 Author
+
+**Abderrahmane ELOUAFI**  
+[LinkedIn](https://www.linkedin.com/in/abderrahmane-elouafi-43226736b/) · [GitHub](https://github.com/elouafi-abderrahmane-2002) · [Portfolio](https://my-first-porfolio-six.vercel.app/)
